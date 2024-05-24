@@ -25,7 +25,7 @@ jobs:
           
       - name: Get Image Digest to Sign
         run: |
-         IMAGE_SHA=$(docker inspect endormatt/python-video-game-2:artifact-test | jq -r '.[].RepoDigests[] | select(contains("nginx"))')
+         IMAGE_SHA=$(docker inspect endormatt/python-video-game-2:artifact-test | jq -r '.[].RepoDigests[] | select(contains("nginx")) | gsub("@"; "")')
          IMAGE_NAME=endormatt/python-video-game-2
          SIGNING_TARGET="$IMAGE_NAME"@"$IMAGE_SHA"
          echo ARTIFACT="$SIGNING_TARGET" >> $GITHUB_ENV
@@ -56,7 +56,7 @@ jobs:
 
       - name: Get Image Digest to Verify
         run: |
-         VERIFY_SHA=$(docker inspect endormatt/python-video-game-2:artifact-test | jq -r '.[].RepoDigests[] | select(contains("nginx"))')
+         VERIFY_SHA=$(docker inspect endormatt/python-video-game-2:artifact-test | jq -r '.[].RepoDigests[] | select(contains("nginx")) | gsub("@"; "")')
          VERIFY_IMAGE_NAME=endormatt/python-video-game-2
          VERIFY_TARGET="$VERIFY_IMAGE_NAME"@"$VERIFY_SHA"
          echo VERIFY_ARTIFACT="$VERIFY_TARGET" >> $GITHUB_ENV
@@ -69,7 +69,7 @@ jobs:
           certificate_oidc_issuer: "https://token.actions.githubusercontent.com"
 
       - name: Push to Docker Hub
-        run: docker push endormatt/python-video-game-2:latest
+        run: docker push endormatt/python-video-game-2:artifact-test
 
       - name: Endor Labs Container Scan
         uses: endorlabs/github-action@containers
@@ -80,6 +80,6 @@ jobs:
           enable_github_action_token: true
           scan_container: true
           scan_dependencies: false
-          image: endormatt/python-video-game-2:latest
+          image: endormatt/python-video-game-2:artifact-test
           project_name: container-python-video-game
           
