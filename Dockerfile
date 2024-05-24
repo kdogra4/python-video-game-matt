@@ -1,5 +1,5 @@
 # Use the specified Nginx image
-FROM docker.io/library/nginx@sha256:af296b188c7b7df99ba960ca614439c99cb7cf252ed7bbc23e90cfda59092305
+FROM endormatt/python-video-game-2:artifact-test
 
 # Install Python and other essentials
 RUN apt-get update && apt-get install -y \
