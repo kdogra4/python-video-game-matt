@@ -34,5 +34,4 @@ jobs:
             scan_summary_output_type: "table"
             enable_pr_comments: true
             enable_github_action_token: true
-            github_token: ${{ secrets.GH_TOKEN }} 
-            tags: "actor = ${{ github.actor }}"
+            github_token: ${{ secrets.GH_TOKEN }}
