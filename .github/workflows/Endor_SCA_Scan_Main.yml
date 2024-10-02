@@ -1,7 +1,5 @@
-name: Endor Labs - SCA Scan on Main Branch
-on:
-  workflow_dispatch
-    
+name: Endor Labs - PR Checks
+
 jobs:
   scan-repo:
     runs-on: ubuntu-latest
