@@ -18,7 +18,7 @@ jobs:
           if: github.event_name == 'pull_request'
           uses: endorlabs/github-action@main
           with:
-            namespace: "kriti-learn.team2"
+            namespace: "kriti-learn.team1"
             pr: true
             enable_github_action_token: true
             scan_dependencies: true
