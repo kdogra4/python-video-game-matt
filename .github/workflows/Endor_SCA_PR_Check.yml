@@ -23,6 +23,7 @@ jobs:
           with:
             namespace: "kriti-learn.team1"
             pr: true
+            scan_summary_output_type: "table"
             enable_github_action_token: true
             scan_dependencies: true
             enable_pr_comments: true
