@@ -25,6 +25,5 @@ jobs:
             pr: true
             enable_github_action_token: true
             scan_dependencies: true
-            pr: true
             enable_pr_comments: true
             github_token: ${{ secrets.GITHUB_TOKEN }}
