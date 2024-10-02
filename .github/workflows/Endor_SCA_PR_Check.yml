@@ -13,10 +13,8 @@ jobs:
       contents: read
       pull-requests: write 
     steps:
-
         - name: Checkout Repository
-          uses: actions/checkout@v3  
-            
+          uses: actions/checkout@v3        
         - name: Endor Labs SCA Scan
           if: github.event_name == 'pull_request'
           uses: endorlabs/github-action@main
