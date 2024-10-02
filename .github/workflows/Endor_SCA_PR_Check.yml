@@ -1,5 +1,4 @@
 name: Endor Labs - PR Checks
-on: pull_request
 
 jobs:
   scan-repo:
