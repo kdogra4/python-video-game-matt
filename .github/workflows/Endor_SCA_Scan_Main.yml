@@ -8,32 +8,20 @@ jobs:
     permissions:
       id-token: write
       contents: read
+      pull-requests: write 
     steps:
 
         - name: Checkout Repository
-          uses: actions/checkout@v3
-          
-        - name: Setup Java
-          uses: actions/setup-java@v4
-          with:
-            distribution: microsoft
-            java-version: "17"
-            cache: maven
-            cache-dependency-path: pom.xml
-
-        - name: Compile Package
-          run: mvn clean install
+          uses: actions/checkout@v3  
             
         - name: Endor Labs SCA Scan
+          if: github.event_name == 'pull_request'
           uses: endorlabs/github-action@main
           with:
-            namespace: "matt-demo-2"
-            api: "https://api.endorlabs.com"
-            scan_summary_output_type: "table"
-            pr: false
+            namespace: "kriti-learn.team2"
+            pr: true
             enable_github_action_token: true
             scan_dependencies: true
-            scan_secrets: true
-            scan_git_logs: true
-            additional_args: "--as-default-branch --tools --github --ghactions"
-            tags: "actor = ${{ github.actor }},run-id = ${{ github.run_id }},event name = ${{ github.event_name }},workflow = ${{ github.workflow }},github sha = ${{ github.sha }}"
+            pr: true
+            enable_pr_comments: true
+            github_token: ${{ secrets.GITHUB_TOKEN }}
